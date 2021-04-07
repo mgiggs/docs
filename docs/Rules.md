@@ -1688,6 +1688,23 @@ Notice we use `Rule` which edits `Rule1` rule set. They can be used interchangea
 
 ------------------------------------------------------------------------------
 
+### Change the color temperature in response to the dimmer setting
+
+This rule is set to make the Color Temperature of the light warmer as the brightness is lowered.
+
+It is setup to scale the value of the colour temperature inversely with the brightness percentage between set limits of 155 (cold light) and 500 (warm light). These values can be changed to suit your preferences. The Scale function sets the value to Variable 1 and then the Variable 1 rule sets the Color Temperature.
+
+
+```haskell
+Rule1
+ON dimmer#state do scale1 %value%, 0 , 100, 500, 155 ENDON
+ON var1#state do ct %var1% ENDON
+
+Rule1 1
+```
+
+------------------------------------------------------------------------------
+
 ### Watchdog for Wi-Fi router
 
 A Tasmota socket can ping a remote host (router itself or something else connected to the router)
